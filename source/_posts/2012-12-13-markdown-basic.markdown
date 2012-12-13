@@ -3,7 +3,7 @@ layout: post
 title: "Markdown-Basic"
 date: 2012-12-13 17:24
 comments: true
-categories: Markdown
+categories: Octopress Markdown
 ---
 
 
@@ -250,7 +250,7 @@ Markdown 支持以下这些符号前面加上反斜杠来帮助插入普通的�
 
 在[这里][z1]你能看到本文的Markdown源码.
 
-[z1]: http://nuoerlz.github.com/blog/2012/12/13/markdown-basic/
+[z1]: https://raw.github.com/nuoerlz/nuoerlz.github.com/source/source/_posts/2012-12-13-markdown-basic.markdown
 
 
 (完)
