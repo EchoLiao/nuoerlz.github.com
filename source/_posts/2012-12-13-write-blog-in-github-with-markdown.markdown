@@ -3,13 +3,13 @@ layout: post
 title: "write blog in github with markdown"
 date: 2012-12-13 14:29
 comments: true
-categories: Markdown
+categories: Octopress
 ---
 
 # 安装与设置
 *****
 
-1. 安装和设置Git
+##安装和设置Git
 
 
 ## 安装Ruby环境
