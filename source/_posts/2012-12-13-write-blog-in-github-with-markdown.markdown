@@ -30,6 +30,7 @@ categories: Octopress Markdown
 安装 Octopress 默认的 Theme
     rake install
 
+<!--more-->
 
 ## 配置Octopress
 
