@@ -68,14 +68,18 @@ categories: Markdown
 
 然后在浏览器中打开`http://localhost:4000/`来看一看效果.
 
+**如果对文章进行过修改, 也可以`rake generate`来更新.**
+
 
 ## 将博客部署到Github上
 
 在预览的效果符合自己的预期后, 就可以通过如下命令将内容部署到Github上了.
 
-第一次部署前需要先要在Github上创建一个username.github.com的repository,  然后通
-过`rake setup_github_pages`将自己的Blog与上述的repository关联起来.  在其过程中
-根据提示输入username.github.com.
+第一次部署前需要先要在Github上创建一个 username.github.com 的[repository][g1],
+然后通过`rake setup_github_pages`将自己的Blog与上述的repository关联起来. 在其
+过程中根据提示输入 username.github.com .
+    rake setup_github_pages
+    > git@github.com:nuoerlz/nuoerlz.github.com
 
 然后就可以通过下面的命令来部署自己的博客内容至Github了:
     rake deploy
@@ -84,8 +88,19 @@ categories: Markdown
     git commit -a -m 'comment'
     git push origin source
 
+[g1]: https://github.com/new
+
 
 ## 开始浏览自己的博客
 
-在浏览器的地址栏中输入username.github.com, 打开的网站就是自己的博客了, 此刻一
-个独立博客就如此问世了!
+在浏览器的地址栏中输入 username.github.com , 打开的网站就是自己的博客了.
+
+
+## Reference
+
+[搭Blog 学Git][r1]
+
+[如何维护Github上博客][r2]
+
+[r1]: http://shanewfx.github.com/blog/2012/02/16/bulid-blog-by-octopress/
+[r2]: http://shanewfx.github.com/blog/2012/02/16/clone-blog-from-github/
