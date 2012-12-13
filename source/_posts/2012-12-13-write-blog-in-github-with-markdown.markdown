@@ -6,8 +6,10 @@ comments: true
 categories: Markdown
 ---
 
+# 安装与设置
+*****
 
-## 安装和设置Git
+1. 安装和设置Git
 
 
 ## 安装Ruby环境
@@ -47,6 +49,9 @@ categories: Markdown
 
 [o1]: https://github.com/nuoerlz/nuoerlz.github.com/blob/source/_config.yml
 
+
+# 写博与发博步骤
+*****
 
 ## 开始写博文
 
@@ -96,7 +101,36 @@ categories: Markdown
 在浏览器的地址栏中输入 username.github.com , 打开的网站就是自己的博客了.
 
 
-## Reference
+## 发博主要步骤
+    rake new_post["title"]
+    vim source/_post/2012-02-16-title.markdown
+    rake generate
+    rake preview
+    rake deploy
+
+
+# 其它功能组件
+*****
+
+## Disqus
+
+到[Disqus][d1]上设置一下, 如果没有账号可以免费注册一个. 在[设置][d2]设置
+    Website name        NuoErlz Blog
+    Website URL         http://nuoerlz.github.com/
+
+编辑 _config.yml , 添加 Disqus 账号信息
+    disqus_short_name: nuoerlz
+    disqus_show_comment_count: true
+
+
+
+[d1]: http://disqus.com
+[d2]: http://nuoerlz.disqus.com/admin/settings/?p=general
+
+
+
+# Reference
+*****
 
 [搭Blog 学Git][r1]
 
