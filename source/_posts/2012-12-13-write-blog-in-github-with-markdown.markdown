@@ -3,7 +3,7 @@ layout: post
 title: "write blog in github with markdown"
 date: 2012-12-13 14:29
 comments: true
-categories: Octopress
+categories: Octopress Markdown
 ---
 
 # 安装与设置
@@ -102,17 +102,19 @@ categories: Octopress
 
 
 ## 发博主要步骤
+```sh
     rake new_post["title"]
     vim source/_post/2012-02-16-title.markdown
     rake generate
     rake preview
     rake deploy
+```
 
 
 # 其它功能组件
 *****
 
-## Disqus
+## Disqus(评论)
 
 到[Disqus][d1]上设置一下, 如果没有账号可以免费注册一个. 在[设置][d2]设置
     Website name        NuoErlz Blog
@@ -122,12 +124,56 @@ categories: Octopress
     disqus_short_name: nuoerlz
     disqus_show_comment_count: true
 
-
-
 [d1]: http://disqus.com
 [d2]: http://nuoerlz.disqus.com/admin/settings/?p=general
 
 
+## 分类(category)列表
+
+### 增加category_list插件
+
+保存以下代码到plugins/category_list_tag.rb:
+```ruby
+    module Jekyll
+      class CategoryListTag < Liquid::Tag
+        def render(context)
+          html = ""
+          categories = context.registers[:site].categories.keys
+          categories.sort.each do |category|
+            posts_in_category = context.registers[:site].categories[category].size
+            category_dir = context.registers[:site].config['category_dir']
+            category_url = File.join(category_dir, category.gsub(/_|\P{Word}/, '-').gsub(/-{2,}/, '-').downcase)
+            html << "<li class='category'><a href='/#{category_url}/'>#{category} (#{posts_in_category})</a></li>\n"
+          end
+          html
+        end
+      end
+    end
+
+    Liquid::Template.register_tag('category_list', Jekyll::CategoryListTag)
+```
+
+这个插件会向liquid注册一个名为category_list的tag, 该tag就是以li的形式将站点所
+有的category组织起来. 如果要将category加入到侧边导航栏, 需要增加一个aside.
+
+### 增加aside
+
+复制以下代码到source/_includes/asides/category_list.html.
+```html
+    <section>
+      <h1>Categories</h1>
+      <ul id="categories">
+        \{% category_list %\}
+      </ul>
+    </section>
+```
+
+### 修改 _config.yml
+
+配置侧边栏需要修改_config.yml文件, 修改其default_asides项:
+```yml
+    default_asides: [asides/category_list.html,asides/recent_posts.html, asides/github.html, asides/twitter.html, asides/delicious.html, asides/pinboard.html, asides/googleplus.html]
+```
 
 # Reference
 *****
@@ -136,5 +182,8 @@ categories: Octopress
 
 [如何维护Github上博客][r2]
 
+[为octopress添加分类(category)列表][r3]
+
 [r1]: http://shanewfx.github.com/blog/2012/02/16/bulid-blog-by-octopress/
 [r2]: http://shanewfx.github.com/blog/2012/02/16/clone-blog-from-github/
+[r3]: http://codemacro.com/2012/07/18/add-category-list-to-octopress/
