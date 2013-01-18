@@ -9,14 +9,12 @@ categories: Octopress Markdown
 # 安装与设置
 *****
 
-##安装和设置Git
+## 安装和设置Git
 
 
 ## 安装Ruby环境
 
-
 ## 安装Octopress
-
 
 先通过Git从Github上克隆一份Octopress
     git clone git://github.com/imathis/octopress.git octopress
