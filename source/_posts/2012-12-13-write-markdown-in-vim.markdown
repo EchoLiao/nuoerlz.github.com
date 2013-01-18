@@ -15,13 +15,13 @@ categories: Markdown VIM
 
 add bellow line to ~/.vimrc
     au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=markdown
+<!--more-->
 
 download and fix:
     cd /usr/local/share/vim/vimfiles/syntax/
     wget https://github.com/plasticboy/vim-markdown/blob/master/syntax/mkd.vim
     mv mkd.vim markdown.vim
 
-<!--more-->
 open markdown.vim then edit it,
 change the line:
     let b:current_syntax = "mkd"

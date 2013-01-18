@@ -20,6 +20,7 @@ categories: Octopress Markdown
 
 先通过Git从Github上克隆一份Octopress
     git clone git://github.com/imathis/octopress.git octopress
+<!--more-->
 
 然后安装一些依赖的工具
     cd octopress
@@ -29,8 +30,6 @@ categories: Octopress Markdown
 
 安装 Octopress 默认的 Theme
     rake install
-
-<!--more-->
 
 ## 配置Octopress
 
