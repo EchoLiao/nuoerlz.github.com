@@ -67,6 +67,7 @@ categories: iOS
 递给应用程序的URL请求
 
 下面代码实现了这个委托方法:
+```objc
     - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
     {
         if ([[url scheme] isEqualToString:@"VPlayer"]) {
@@ -76,21 +77,25 @@ categories: iOS
         }
         return NO;
     }
+```
 
 
 ### 在其它程序中调用测试
 
 用 openURL: 方法调用
 
+```c
     - (IBAction)openAnotherApp:(id)sender
     {
         NSString *video = @"VPlayer://http://v.youku.com/v_show/id_XNDk3ODAzMzEy.html";
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:video]];
     }
+```
 
 
 ### 其它常见的调用系统应用的方法
 
+```objc
     // app store
     NSURL *appStoreUrl = [NSURL URLWithString:@"http://phobos.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=291586600&amp;mt=8"];
     [[UIApplication sharedApplication] openURL:appStoreUrl];
@@ -112,6 +117,7 @@ categories: iOS
 
     // browser
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.google.com/"]];
+```
 
 
 ###  公开你的 Scheme
@@ -213,6 +219,7 @@ categories: iOS
 与***在某一程序里调用打开其它程序--处理URL请求***是一样的. 参见文章的前面部分.
 因为两者是一样处理流程, 所以有一点要注意, 可以用下面的方法把两者区分开:
 
+```objc
     - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
     {
         if([url isFileURL]) {
@@ -221,6 +228,7 @@ categories: iOS
             // Handle custom URL scheme
         }
     }
+```
 
 
 ### Reference
