@@ -32,6 +32,7 @@ categories: iOS
 
 修改 Info.plist ,
 
+```diff
     $ git diff VPlayer-Info.plist
         diff --git a/VPlayer-Info.plist b/VPlayer-Info.plist
         index faba046..b60a0b9 100644
@@ -59,6 +60,7 @@ categories: iOS
                 <key>CFBundleDevelopmentRegion</key>
                 <string>English</string>
                 <key>CFBundleDisplayName</key>
+```
 
 
 ### 处理URL请求
@@ -84,7 +86,7 @@ categories: iOS
 
 用 openURL: 方法调用
 
-```c
+```objc
     - (IBAction)openAnotherApp:(id)sender
     {
         NSString *video = @"VPlayer://http://v.youku.com/v_show/id_XNDk3ODAzMzEy.html";
@@ -167,6 +169,7 @@ categories: iOS
 件类型的名字用的是UTI(Uniform Type Identifiers)标准, 在[这里][op2]查看系统已定义
 好的名字; 当然你也可定制一个[新的文件类型的UTI][op3].
 
+```diff
     $ git diff VPlayer-Info.plist
         diff --git a/VPlayer-Info.plist b/VPlayer-Info.plist
         index b60a0b9..3afdfb8 100644
@@ -208,6 +211,7 @@ categories: iOS
         +    </array>
              <key>CFBundleGetInfoString</key>
              <string></string>
+```
 
 在这里, 我把我的应用配置成可以处理音视频, 图象, URL.
 
