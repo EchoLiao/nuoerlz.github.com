@@ -1,0 +1,376 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>write blog in github with markdown - NuoErlz Blog</title>
+	<meta name="author" content="nuoerlz">
+
+	
+	<meta name="description" content="安装与设置 安装和设置Git 安装Ruby环境 安装Octopress 先通过Git从Github上克隆一份Octopress git clone git://github.com/imathis/octopress.git octopress 然后安装一些依赖的工具 cd octopress &hellip;">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="NuoErlz Blog" type="application/atom+xml">
+	<link rel="canonical" href="">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	
+</head>
+
+<body>
+	<header id="header" class="inner"><h1><a href="/">NuoErlz Blog</a></h1>
+<nav id="main-nav"><ul class="main">
+	<li><a href="/">Blog</a></li>
+	<li><a href="/blog/archives">Archives</a></li>
+</ul>
+</nav>
+<nav id="mobile-nav">
+	<div class="alignleft menu">
+		<a class="button">Menu</a>
+		<div class="container"><ul class="main">
+	<li><a href="/">Blog</a></li>
+	<li><a href="/blog/archives">Archives</a></li>
+</ul>
+</div>
+	</div>
+	<div class="alignright search">
+		<a class="button"></a>
+		<div class="container">
+			<form action="http://google.com/search" method="get">
+				<input type="text" name="q" results="0">
+				<input type="hidden" name="q" value="site:nuoerlz.github.com">
+			</form>
+		</div>
+	</div>
+</nav>
+<nav id="sub-nav" class="alignright">
+	<div class="social">
+		
+		
+		<a class="google" href="https://plus.google.com/nuoerlz?rel=author" title="Google+">Google+</a>
+		
+		
+		
+		<a class="github" href="https://github.com/nuoerlz" title="GitHub">GitHub</a>
+		
+    
+		
+		
+		
+		
+		
+		<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+		
+	</div>
+	<form class="search" action="http://google.com/search" method="get">
+		<input class="alignright" type="text" name="q" results="0">
+		<input type="hidden" name="q" value="site:nuoerlz.github.com">
+	</form>
+</nav>
+
+</header>
+	
+		
+	
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">Write Blog in Github With Markdown</h2>
+	<div class="entry-content"><h1>安装与设置</h1>
+
+<h2>安装和设置Git</h2>
+
+<h2>安装Ruby环境</h2>
+
+<h2>安装Octopress</h2>
+
+<p>先通过Git从Github上克隆一份Octopress</p>
+
+<pre><code>git clone git://github.com/imathis/octopress.git octopress
+</code></pre>
+
+<!--more-->
+
+
+<p>然后安装一些依赖的工具</p>
+
+<pre><code>cd octopress
+ruby --version // Should report Ruby 1.9.x
+gem install bundler
+bundle install
+</code></pre>
+
+<p>安装 Octopress 默认的 Theme</p>
+
+<pre><code>rake install
+</code></pre>
+
+<h2>配置Octopress</h2>
+
+<p>通过修改<a href="https://github.com/nuoerlz/nuoerlz.github.com/blob/source/_config.yml">_config.yml</a>来配置博客. 主要部分设置:</p>
+
+<pre><code>url: http://nuoerlz.github.com
+title: NuoErlz Blog
+subtitle: It's me!
+author: nuoerlz
+simple_search: http://google.com/search
+
+# date format
+date_format: "ordinal"
+
+# Disqus Comments
+disqus_short_name:
+disqus_show_comment_count: false
+</code></pre>
+
+<h1>写博与发博步骤</h1>
+
+<h2>开始写博文</h2>
+
+<p>通过<code>rake new_post["title"]</code>来在 source/_post 下创建一个新的Post, 文件名如下面
+的格式:2012-02-16-title.markdown.
+然后可以用 VIM 打开该文件, 并在其中输入/编辑文章内容.</p>
+
+<pre><code>rake new_post["title"]
+vim source/_post/2012-02-16-title.markdown
+</code></pre>
+
+<p>&#8230;</p>
+
+<p>写文章时, 可以使用 Markdown 和 Octopress Plugins 来对内容进行格式排版.</p>
+
+<h2>预览效果</h2>
+
+<p>在修改设置或者写完文章后, 想看看具体效果, 可以通过如下命令来完成:</p>
+
+<pre><code>rake generate
+rake preview
+</code></pre>
+
+<p>然后在浏览器中打开<code>http://localhost:4000/</code>来看一看效果.</p>
+
+<p><strong>如果对文章进行过修改, 也可以<code>rake generate</code>来更新.</strong></p>
+
+<h2>将博客部署到Github上</h2>
+
+<p>在预览的效果符合自己的预期后, 就可以通过如下命令将内容部署到Github上了.</p>
+
+<p>第一次部署前需要先要在Github上创建一个 username.github.com 的<a href="https://github.com/new">repository</a>,
+然后通过<code>rake setup_github_pages</code>将自己的Blog与上述的repository关联起来. 在其
+过程中根据提示输入 username.github.com .</p>
+
+<pre><code>rake setup_github_pages
+&gt; git@github.com:nuoerlz/nuoerlz.github.com
+</code></pre>
+
+<p>然后就可以通过下面的命令来部署自己的博客内容至Github了:</p>
+
+<pre><code>rake deploy
+git status
+git add .
+git commit -a -m 'comment'
+git push origin source
+</code></pre>
+
+<h2>开始浏览自己的博客</h2>
+
+<p>在浏览器的地址栏中输入 username.github.com , 打开的网站就是自己的博客了.</p>
+
+<h2>发博主要步骤</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>rake new_post<span class="o">[</span><span class="s2">&quot;title&quot;</span><span class="o">]</span>
+</span><span class='line'>vim <span class="nb">source</span>/_post/2012-02-16-title.markdown
+</span><span class='line'>rake generate
+</span><span class='line'>rake preview
+</span><span class='line'>rake deploy
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>其它功能组件</h1>
+
+<h2>Disqus(评论)</h2>
+
+<p>到<a href="http://disqus.com">Disqus</a>上设置一下, 如果没有账号可以免费注册一个. 在<a href="http://nuoerlz.disqus.com/admin/settings/?p=general">设置</a>设置</p>
+
+<pre><code>Website name        NuoErlz Blog
+Website URL         http://nuoerlz.github.com/
+</code></pre>
+
+<p>编辑 _config.yml , 添加 Disqus 账号信息</p>
+
+<pre><code>disqus_short_name: nuoerlz
+disqus_show_comment_count: true
+</code></pre>
+
+<h2>分类(category)列表</h2>
+
+<h3>增加category_list插件</h3>
+
+<p>保存以下代码到plugins/category_list_tag.rb:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">module</span> <span class="nn">Jekyll</span>
+</span><span class='line'>  <span class="k">class</span> <span class="nc">CategoryListTag</span> <span class="o">&lt;</span> <span class="no">Liquid</span><span class="o">::</span><span class="no">Tag</span>
+</span><span class='line'>    <span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
+</span><span class='line'>      <span class="n">html</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+</span><span class='line'>      <span class="n">categories</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">registers</span><span class="o">[</span><span class="ss">:site</span><span class="o">].</span><span class="n">categories</span><span class="o">.</span><span class="n">keys</span>
+</span><span class='line'>      <span class="n">categories</span><span class="o">.</span><span class="n">sort</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">category</span><span class="o">|</span>
+</span><span class='line'>        <span class="n">posts_in_category</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">registers</span><span class="o">[</span><span class="ss">:site</span><span class="o">].</span><span class="n">categories</span><span class="o">[</span><span class="n">category</span><span class="o">].</span><span class="n">size</span>
+</span><span class='line'>        <span class="n">category_dir</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">registers</span><span class="o">[</span><span class="ss">:site</span><span class="o">].</span><span class="n">config</span><span class="o">[</span><span class="s1">&#39;category_dir&#39;</span><span class="o">]</span>
+</span><span class='line'>        <span class="n">category_url</span> <span class="o">=</span> <span class="no">File</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">category_dir</span><span class="p">,</span> <span class="n">category</span><span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/_|\P{Word}/</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">gsub</span><span class="p">(</span><span class="sr">/-{2,}/</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">downcase</span><span class="p">)</span>
+</span><span class='line'>        <span class="n">html</span> <span class="o">&lt;&lt;</span> <span class="s2">&quot;&lt;li class=&#39;category&#39;&gt;&lt;a href=&#39;/</span><span class="si">#{</span><span class="n">category_url</span><span class="si">}</span><span class="s2">/&#39;&gt;</span><span class="si">#{</span><span class="n">category</span><span class="si">}</span><span class="s2"> (</span><span class="si">#{</span><span class="n">posts_in_category</span><span class="si">}</span><span class="s2">)&lt;/a&gt;&lt;/li&gt;</span><span class="se">\n</span><span class="s2">&quot;</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>      <span class="n">html</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="no">Liquid</span><span class="o">::</span><span class="no">Template</span><span class="o">.</span><span class="n">register_tag</span><span class="p">(</span><span class="s1">&#39;category_list&#39;</span><span class="p">,</span> <span class="no">Jekyll</span><span class="o">::</span><span class="no">CategoryListTag</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>这个插件会向liquid注册一个名为category_list的tag, 该tag就是以li的形式将站点所
+有的category组织起来. 如果要将category加入到侧边导航栏, 需要增加一个aside.</p>
+
+<h3>增加aside</h3>
+
+<p>复制以下代码到source/_includes/asides/category_list.html.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;section&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;h1&gt;</span>Categories<span class="nt">&lt;/h1&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;ul</span> <span class="na">id=</span><span class="s">&quot;categories&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    \{% category_list %\}
+</span><span class='line'>  <span class="nt">&lt;/ul&gt;</span>
+</span><span class='line'><span class="nt">&lt;/section&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>修改 _config.yml</h3>
+
+<p>配置侧边栏需要修改_config.yml文件, 修改其default_asides项:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">default_asides</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="nv">asides/category_list.html</span><span class="p-Indicator">,</span><span class="nv">asides/recent_posts.html</span><span class="p-Indicator">,</span> <span class="nv">asides/github.html</span><span class="p-Indicator">,</span> <span class="nv">asides/twitter.html</span><span class="p-Indicator">,</span> <span class="nv">asides/delicious.html</span><span class="p-Indicator">,</span> <span class="nv">asides/pinboard.html</span><span class="p-Indicator">,</span> <span class="nv">asides/googleplus.html</span><span class="p-Indicator">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>主题</h2>
+
+<h1>Reference</h1>
+
+<p><a href="http://shanewfx.github.com/blog/2012/02/16/bulid-blog-by-octopress/">搭Blog 学Git</a><br/>
+<a href="http://shanewfx.github.com/blog/2012/02/16/clone-blog-from-github/">如何维护Github上博客</a><br/>
+<a href="http://codemacro.com/2012/07/18/add-category-list-to-octopress/">为octopress添加分类(category)列表</a></p>
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-13T14:29:00+08:00" pubdate data-updated="true">Dec 13<span>th</span>, 2012</time></div>
+	<div class="tags">
+
+
+	<a class='category' href='/blog/categories/markdown/'>Markdown</a>, <a class='category' href='/blog/categories/octopress/'>Octopress</a>
+
+
+</div>
+	
+		<span class="comments"><a href="/blog/2012/12/13/write-blog-in-github-with-markdown/#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	
+	<a class="addthis_button_tweet"></a>
+	
+	
+	<a class="addthis_counter addthis_pill_style"></a>
+	</div>
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+</div>
+
+
+
+<section id="comment">
+    <h2 class="title">Comments</h2>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+	<footer id="footer" class="inner">Copyright &copy; 2013
+
+    nuoerlz
+
+</footer>
+	<script src="/javascripts/slash.js"></script>
+<script src="/javascripts/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+	$('.fancybox').fancybox();
+})(jQuery);
+</script> <!-- Delete or comment this line to disable Fancybox -->
+
+
+<script type="text/javascript">
+      var disqus_shortname = 'nuoerlz';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://nuoerlz.github.com/blog/2012/12/13/write-blog-in-github-with-markdown/';
+        var disqus_url = 'http://nuoerlz.github.com/blog/2012/12/13/write-blog-in-github-with-markdown/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+</body>
+</html>

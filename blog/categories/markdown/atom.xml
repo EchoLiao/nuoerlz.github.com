@@ -1,0 +1,540 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Markdown | NuoErlz Blog]]></title>
+  <link href="http://nuoerlz.github.com/blog/categories/markdown/atom.xml" rel="self"/>
+  <link href="http://nuoerlz.github.com/"/>
+  <updated>2013-01-19T11:30:53+08:00</updated>
+  <id>http://nuoerlz.github.com/</id>
+  <author>
+    <name><![CDATA[nuoerlz]]></name>
+    <email><![CDATA[nuoerlz@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[write markdown in vim]]></title>
+    <link href="http://nuoerlz.github.com/blog/2012/12/13/write-markdown-in-vim/"/>
+    <updated>2012-12-13T18:36:00+08:00</updated>
+    <id>http://nuoerlz.github.com/blog/2012/12/13/write-markdown-in-vim</id>
+    <content type="html"><![CDATA[<h1>Browse &amp; Edit &amp; Navigation Markdown file in vim</h1>
+
+<h2>Syntax</h2>
+
+<p><a href="https://github.com/plasticboy/vim-markdown/blob/master/syntax/mkd.vim">syntax vim script</a></p>
+
+<p>add bellow line to ~/.vimrc</p>
+
+<pre><code>au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=markdown
+</code></pre>
+
+<!--more-->
+
+
+<p>download and fix:</p>
+
+<pre><code>cd /usr/local/share/vim/vimfiles/syntax/
+wget https://github.com/plasticboy/vim-markdown/blob/master/syntax/mkd.vim
+mv mkd.vim markdown.vim
+</code></pre>
+
+<p>open markdown.vim then edit it,
+change the line:</p>
+
+<pre><code>let b:current_syntax = "mkd"
+</code></pre>
+
+<p>to bellow line:</p>
+
+<pre><code>let b:current_syntax = "markdown"
+</code></pre>
+
+<h2>Preview in browser</h2>
+
+<p><a href="http://www.vim.org/scripts/script.php?script_id=3344">preview</a> : Plugin for previewing markup files(markdown,rdoc,textile,html)</p>
+
+<p>install ruby 'bluecloth' gem</p>
+
+<pre><code>// comment
+/usr/bin/gem install bluecloth
+</code></pre>
+
+<p>install vim plugin</p>
+
+<pre><code>unzip vim-preview-0.9.zip -d /usr/local/share/vim/vimfiles/
+</code></pre>
+
+<p>add bellow line to .vimrc, so you can type &lt;alt+I> to preview in browser:</p>
+
+<pre><code>map &lt;A-i&gt; :Preview&lt;cr&gt;
+</code></pre>
+
+<h2>Taglist Navigation for Markdown</h2>
+
+<p><a href="https://github.com/hupili/evermd/tree/master/doc/howto-markdown-in-vim">howto markdown in vim</a></p>
+
+<p>add to .vimrc</p>
+
+<pre><code>au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set ft=markdown
+let tlist_markdown_settings = 'markdown;c:content;f:figures;t:tables;h:headlines'
+</code></pre>
+
+<p>add to .ctags</p>
+
+<pre><code>--langdef=markdown
+--langmap=markdown:.md
+--regex-markdown=/^#[ \t]+(.*)/\1/h,heading1/
+--regex-markdown=/^##[ \t]+(.*)/.  \1/h,heading2/
+--regex-markdown=/^###[ \t]+(.*)/.    \1/h,heading3/
+--regex-markdown=/^####[ \t]+(.*)/.      \1/h,heading4/
+--regex-markdown=/^#####[ \t]+(.*)/.        \1/h,heading5/
+--regex-markdown=/^######[ \t]+(.*)/.          \1/h,heading6/
+--regex-markdown=/^#######[ \t]+(.*)/.            \1/h,heading7/
+</code></pre>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Markdown-Basic]]></title>
+    <link href="http://nuoerlz.github.com/blog/2012/12/13/markdown-basic/"/>
+    <updated>2012-12-13T17:24:00+08:00</updated>
+    <id>http://nuoerlz.github.com/blog/2012/12/13/markdown-basic</id>
+    <content type="html"><![CDATA[<h1>段落,标题,区块代码</h1>
+
+<p>Now is the time for all good men to come to
+the aid of their country. This is just a
+regular paragraph.</p>
+
+<p>The quick brown fox jumped over the lazy
+dog's back.</p>
+
+<!--more-->
+
+
+<h3>Header 3</h3>
+
+<p>区块引用则使用 email 形式的 '>' 角括号.</p>
+
+<blockquote><p>This is a blockquote.</p>
+
+<p>This is the 'second' "paragraph" in the blockquote.</p>
+
+<p><a href="https://gitcafe.com/riku/Markdown-Syntax-CN/blob/master/syntax.md">b</a>: https://gitcafe.com/riku/Markdown-Syntax-CN/blob/master/syntax.md</p>
+
+<h2>This is an H2 in a blockquote</h2></blockquote>
+
+<h1>修辞和强调</h1>
+
+<p>Markdown 使用星号和底线来标记需要强调的区段.</p>
+
+<p>Markdown 语法:</p>
+
+<p><em>重要</em>
+<strong>重要</strong>
+<strong><em>重要</em></strong>
+<strong><strong>重要</strong></strong>
+<strong><strong><em>重要</em></strong></strong>
+<strong><strong><em>也重要</em></strong></strong>
+<strong><em>重要</em></strong></p>
+
+<p>Some of these words <em>are emphasized</em>.
+Some of these words <em>are emphasized also</em>.
+Use two asterisks for <strong>strong emphasis</strong>.
+Or, if you prefer, <strong>use two underscores instead</strong>.</p>
+
+<h1>列表</h1>
+
+<h2>无序列表</h2>
+
+<p>无序列表使用星号,加号和减号来做为列表的项目标记, 这些符号是都可以使用的.</p>
+
+<p>星号:</p>
+
+<ul>
+<li>Candy.</li>
+<li>Gum.</li>
+<li>Booze.</li>
+<li>crash.</li>
+</ul>
+
+
+<p>加号:</p>
+
+<ul>
+<li>Candy.</li>
+<li>Gum.</li>
+<li>Booze.</li>
+</ul>
+
+
+<p>减号:</p>
+
+<ul>
+<li>Candy.</li>
+<li>Gum.</li>
+<li>Booze.</li>
+</ul>
+
+
+<h2>有序列表</h2>
+
+<p>(有)[序]的{列表则是}使用一'般'的数"字接"着一个英文句点作为项目标记:</p>
+
+<ol>
+<li>Red</li>
+<li>Green</li>
+<li><p>Blue</p></li>
+<li><p>What a great season.</p></li>
+</ol>
+
+
+<p>1986. What a great season.</p>
+
+<h1>链接</h1>
+
+<p>Markdown 支援两种形式的链接语法: 行内 和 参考 两种形式, 两种都是使用角括号来把
+文字转成连结.</p>
+
+<h2>行内形式</h2>
+
+<p>行内形式是直接在后面用括号直接接上链接:</p>
+
+<p>This is an <a href="http://example.com/">example link</a>.</p>
+
+<p>你也可以选择性的加上 title 属性:</p>
+
+<p>This is an <a href="http://example.com/" title="With a Title">example link</a>.</p>
+
+<h2>参考形式</h2>
+
+<p>参考形式的链接让你可以为链接定一个名称, 之后你可以在文件的其他地方定义该链接的内容:</p>
+
+<p>I get 10 times more traffic from <a href="http://google.com/" title="Google">Google</a> than from
+<a href="http://search.yahoo.com/" title="Yahoo Search">Yahoo</a> or <a href="http://search.msn.com/" title="MSN Search">MSN</a>.</p>
+
+<p>title 属性是选择性的, 链接名称可以用字母,数字和空格, 但是不分大小写:</p>
+
+<p>I start my morning with a cup of coffee and
+<a href="http://www.nytimes.com/">The New York Times</a>.</p>
+
+<h2>自动链接</h2>
+
+<p>Markdown 支持以比较简短的自动链接形式来处理网址和电子邮件信箱, 只要是用方括号
+包起来,  Markdown 就会自动把它转成链接. 一般网址的链接文字就和链接地址一样, 例
+如:</p>
+
+<p><a href="http://example.com/">http://example.com/</a></p>
+
+<p>邮址的自动链接也很类似, 只是 Markdown 会先做一个编码转换的过程, 把文字字符转成
+16 进位码的 HTML 实体, 这样的格式可以糊弄一些不好的邮址收集机器人, 例如:</p>
+
+<p><a href="&#x6d;&#x61;&#105;&#x6c;&#x74;&#x6f;&#x3a;&#97;&#100;&#x64;&#114;&#x65;&#x73;&#115;&#64;&#101;&#120;&#97;&#109;&#112;&#x6c;&#101;&#x2e;&#99;&#x6f;&#x6d;">&#97;&#x64;&#x64;&#114;&#x65;&#115;&#x73;&#x40;&#x65;&#x78;&#x61;&#109;&#x70;&#x6c;&#x65;&#x2e;&#99;&#111;&#x6d;</a></p>
+
+<h1>图片</h1>
+
+<p>图片的语法和链接很像.</p>
+
+<h2>行内形式</h2>
+
+<p>行内形式(title 是选择性的):</p>
+
+<p><img src="./img.png" title="Title" alt="alt text" /></p>
+
+<h2>参考形式</h2>
+
+<p><img src="http://www.baidu.com/img/baidu_sylogo1.gif" title="Title" alt="alt text" /></p>
+
+<h1>代码</h1>
+
+<h2>反引号 `</h2>
+
+<p>在一般的段落文字中, 你可以使用反引号 ` 来标记代码区段, 区段内的 &amp; , &lt; 和 > 都
+会被自动的转换成 HTML 实体, 这项特性让你可以很容易的在代码区段内插入 HTML 码:</p>
+
+<p>I strongly recommend against using any <code>&lt;blink&gt;</code> tags.</p>
+
+<p>I wish SmartyPants used named entities like <code>&amp;mdash;</code>
+instead of decimal-encoded entites like <code>&amp;#8212;</code>.</p>
+
+<h2>4个空格或一个 tab</h2>
+
+<p>如果要建立一个已经格式化好的代码区块, 只要每行都缩进 4 个空格或是一个 tab 就可
+以了, 而 &amp; , &lt; 和 > 也一样会自动转成 HTML 实体.</p>
+
+<p>Markdown 语法:</p>
+
+<pre><code>If y"ou" 'w'ant your page to validate under XHTML 1.0 Strict,
+you've got to put paragraph tags in your blockquotes:
+[b]: https://gitcafe.com/riku/Markdown-Syntax-CN/blob/master/syntax.md
+</code></pre>
+
+<blockquote>
+<p>For example.</p>
+</blockquote>
+
+
+<h1>分隔线</h1>
+
+<p>你可'以'在一行中用三个以上的星号,减号,底线来建立一个分隔线, 行内不能有其他东西.
+你也可以在星号或是减号中间插入空格. 下面每种写法都可以建立分隔线:</p>
+
+<hr />
+
+<p>If you want your page to validate under XHTML 1.0 Strict,
+you've got to put paragraph tags in your blockquotes:</p>
+
+<hr />
+
+<hr />
+
+<hr />
+
+<hr />
+
+<h1>换行</h1>
+
+<p>在文本中输入的换行会从最终生成的结果中删除, 浏览器会根据可用空间自动换行. 如果
+想强迫换行, 可以在行尾插入至少两个空格.</p>
+
+<h1>反斜杠</h1>
+
+<p>Markdown 可以利用反斜杠来插入一些在语法中有其它意义的符号, 例如: 如果你想要用
+星号加在文字旁边的方式来做出强调效果(但不用 <code>&lt;em&gt;</code> 标签), 你可以在星号的前面加
+上反斜杠:</p>
+
+<p>*literal asterisks*</p>
+
+<p>Markdown 支持以下这些符号前面加上反斜杠来帮助插入普通的符号:</p>
+
+<pre><code>\   反斜线
+`   反引号
+*   星号
+_   底线
+{}  花括号
+[]  方括号
+()  括弧
+#   井字号
++   加号
+-   减号
+.   英文句点
+!   惊叹号
+</code></pre>
+
+<h1>Referrence</h1>
+
+<p><a href="http://wowubuntu.com/markdown/basic.html">Markdown: Basics (快速入门)</a></p>
+
+<p><a href="https://gitcafe.com/riku/Markdown-Syntax-CN/blob/master/syntax.md">Markdown 语法说明 (简体中文版)</a></p>
+
+<p><a href="http://www.worldhello.net/gotgithub/appendix/markups.html">附录：轻量级标记语言</a></p>
+
+<p><a href="http://github.github.com/github-flavored-markdown/">GitHub Flavored Markdown</a></p>
+
+<p>在<a href="https://raw.github.com/nuoerlz/nuoerlz.github.com/source/source/_posts/2012-12-13-markdown-basic.markdown">这里</a>你能看到本文的Markdown源码.</p>
+
+<p>(完)</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[write blog in github with markdown]]></title>
+    <link href="http://nuoerlz.github.com/blog/2012/12/13/write-blog-in-github-with-markdown/"/>
+    <updated>2012-12-13T14:29:00+08:00</updated>
+    <id>http://nuoerlz.github.com/blog/2012/12/13/write-blog-in-github-with-markdown</id>
+    <content type="html"><![CDATA[<h1>安装与设置</h1>
+
+<h2>安装和设置Git</h2>
+
+<h2>安装Ruby环境</h2>
+
+<h2>安装Octopress</h2>
+
+<p>先通过Git从Github上克隆一份Octopress</p>
+
+<pre><code>git clone git://github.com/imathis/octopress.git octopress
+</code></pre>
+
+<!--more-->
+
+
+<p>然后安装一些依赖的工具</p>
+
+<pre><code>cd octopress
+ruby --version // Should report Ruby 1.9.x
+gem install bundler
+bundle install
+</code></pre>
+
+<p>安装 Octopress 默认的 Theme</p>
+
+<pre><code>rake install
+</code></pre>
+
+<h2>配置Octopress</h2>
+
+<p>通过修改<a href="https://github.com/nuoerlz/nuoerlz.github.com/blob/source/_config.yml">_config.yml</a>来配置博客. 主要部分设置:</p>
+
+<pre><code>url: http://nuoerlz.github.com
+title: NuoErlz Blog
+subtitle: It's me!
+author: nuoerlz
+simple_search: http://google.com/search
+
+# date format
+date_format: "ordinal"
+
+# Disqus Comments
+disqus_short_name:
+disqus_show_comment_count: false
+</code></pre>
+
+<h1>写博与发博步骤</h1>
+
+<h2>开始写博文</h2>
+
+<p>通过<code>rake new_post["title"]</code>来在 source/_post 下创建一个新的Post, 文件名如下面
+的格式:2012-02-16-title.markdown.
+然后可以用 VIM 打开该文件, 并在其中输入/编辑文章内容.</p>
+
+<pre><code>rake new_post["title"]
+vim source/_post/2012-02-16-title.markdown
+</code></pre>
+
+<p>...</p>
+
+<p>写文章时, 可以使用 Markdown 和 Octopress Plugins 来对内容进行格式排版.</p>
+
+<h2>预览效果</h2>
+
+<p>在修改设置或者写完文章后, 想看看具体效果, 可以通过如下命令来完成:</p>
+
+<pre><code>rake generate
+rake preview
+</code></pre>
+
+<p>然后在浏览器中打开<code>http://localhost:4000/</code>来看一看效果.</p>
+
+<p><strong>如果对文章进行过修改, 也可以<code>rake generate</code>来更新.</strong></p>
+
+<h2>将博客部署到Github上</h2>
+
+<p>在预览的效果符合自己的预期后, 就可以通过如下命令将内容部署到Github上了.</p>
+
+<p>第一次部署前需要先要在Github上创建一个 username.github.com 的<a href="https://github.com/new">repository</a>,
+然后通过<code>rake setup_github_pages</code>将自己的Blog与上述的repository关联起来. 在其
+过程中根据提示输入 username.github.com .</p>
+
+<pre><code>rake setup_github_pages
+&gt; git@github.com:nuoerlz/nuoerlz.github.com
+</code></pre>
+
+<p>然后就可以通过下面的命令来部署自己的博客内容至Github了:</p>
+
+<pre><code>rake deploy
+git status
+git add .
+git commit -a -m 'comment'
+git push origin source
+</code></pre>
+
+<h2>开始浏览自己的博客</h2>
+
+<p>在浏览器的地址栏中输入 username.github.com , 打开的网站就是自己的博客了.</p>
+
+<h2>发博主要步骤</h2>
+
+<p>```sh</p>
+
+<pre><code>rake new_post["title"]
+vim source/_post/2012-02-16-title.markdown
+rake generate
+rake preview
+rake deploy
+</code></pre>
+
+<p>```</p>
+
+<h1>其它功能组件</h1>
+
+<h2>Disqus(评论)</h2>
+
+<p>到<a href="http://disqus.com">Disqus</a>上设置一下, 如果没有账号可以免费注册一个. 在<a href="http://nuoerlz.disqus.com/admin/settings/?p=general">设置</a>设置</p>
+
+<pre><code>Website name        NuoErlz Blog
+Website URL         http://nuoerlz.github.com/
+</code></pre>
+
+<p>编辑 _config.yml , 添加 Disqus 账号信息</p>
+
+<pre><code>disqus_short_name: nuoerlz
+disqus_show_comment_count: true
+</code></pre>
+
+<h2>分类(category)列表</h2>
+
+<h3>增加category_list插件</h3>
+
+<p>保存以下代码到plugins/category_list_tag.rb:
+```ruby</p>
+
+<pre><code>module Jekyll
+  class CategoryListTag &lt; Liquid::Tag
+    def render(context)
+      html = ""
+      categories = context.registers[:site].categories.keys
+      categories.sort.each do |category|
+        posts_in_category = context.registers[:site].categories[category].size
+        category_dir = context.registers[:site].config['category_dir']
+        category_url = File.join(category_dir, category.gsub(/_|\P{Word}/, '-').gsub(/-{2,}/, '-').downcase)
+        html &lt;&lt; "&lt;li class='category'&gt;&lt;a href='http://nuoerlz.github.com/#{category_url}/'&gt;#{category} (#{posts_in_category})&lt;/a&gt;&lt;/li&gt;\n"
+      end
+      html
+    end
+  end
+end
+
+Liquid::Template.register_tag('category_list', Jekyll::CategoryListTag)
+</code></pre>
+
+<p>```</p>
+
+<p>这个插件会向liquid注册一个名为category_list的tag, 该tag就是以li的形式将站点所
+有的category组织起来. 如果要将category加入到侧边导航栏, 需要增加一个aside.</p>
+
+<h3>增加aside</h3>
+
+<p>复制以下代码到source/_includes/asides/category_list.html.
+```html</p>
+
+<pre><code>&lt;section&gt;
+  &lt;h1&gt;Categories&lt;/h1&gt;
+  &lt;ul id="categories"&gt;
+    \{% category_list %\}
+  &lt;/ul&gt;
+&lt;/section&gt;
+</code></pre>
+
+<p>```</p>
+
+<h3>修改 _config.yml</h3>
+
+<p>配置侧边栏需要修改_config.yml文件, 修改其default_asides项:
+```yml</p>
+
+<pre><code>default_asides: [asides/category_list.html,asides/recent_posts.html, asides/github.html, asides/twitter.html, asides/delicious.html, asides/pinboard.html, asides/googleplus.html]
+</code></pre>
+
+<p>```</p>
+
+<h2>主题</h2>
+
+<h1>Reference</h1>
+
+<p><a href="http://shanewfx.github.com/blog/2012/02/16/bulid-blog-by-octopress/">搭Blog 学Git</a><br/>
+<a href="http://shanewfx.github.com/blog/2012/02/16/clone-blog-from-github/">如何维护Github上博客</a><br/>
+<a href="http://codemacro.com/2012/07/18/add-category-list-to-octopress/">为octopress添加分类(category)列表</a></p>
+]]></content>
+  </entry>
+  
+</feed>

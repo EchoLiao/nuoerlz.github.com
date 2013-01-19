@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: VIM | NuoErlz Blog]]></title>
+  <link href="http://nuoerlz.github.com/blog/categories/vim/atom.xml" rel="self"/>
+  <link href="http://nuoerlz.github.com/"/>
+  <updated>2013-01-19T11:30:53+08:00</updated>
+  <id>http://nuoerlz.github.com/</id>
+  <author>
+    <name><![CDATA[nuoerlz]]></name>
+    <email><![CDATA[nuoerlz@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[write markdown in vim]]></title>
+    <link href="http://nuoerlz.github.com/blog/2012/12/13/write-markdown-in-vim/"/>
+    <updated>2012-12-13T18:36:00+08:00</updated>
+    <id>http://nuoerlz.github.com/blog/2012/12/13/write-markdown-in-vim</id>
+    <content type="html"><![CDATA[<h1>Browse &amp; Edit &amp; Navigation Markdown file in vim</h1>
+
+<h2>Syntax</h2>
+
+<p><a href="https://github.com/plasticboy/vim-markdown/blob/master/syntax/mkd.vim">syntax vim script</a></p>
+
+<p>add bellow line to ~/.vimrc</p>
+
+<pre><code>au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set filetype=markdown
+</code></pre>
+
+<!--more-->
+
+
+<p>download and fix:</p>
+
+<pre><code>cd /usr/local/share/vim/vimfiles/syntax/
+wget https://github.com/plasticboy/vim-markdown/blob/master/syntax/mkd.vim
+mv mkd.vim markdown.vim
+</code></pre>
+
+<p>open markdown.vim then edit it,
+change the line:</p>
+
+<pre><code>let b:current_syntax = "mkd"
+</code></pre>
+
+<p>to bellow line:</p>
+
+<pre><code>let b:current_syntax = "markdown"
+</code></pre>
+
+<h2>Preview in browser</h2>
+
+<p><a href="http://www.vim.org/scripts/script.php?script_id=3344">preview</a> : Plugin for previewing markup files(markdown,rdoc,textile,html)</p>
+
+<p>install ruby 'bluecloth' gem</p>
+
+<pre><code>// comment
+/usr/bin/gem install bluecloth
+</code></pre>
+
+<p>install vim plugin</p>
+
+<pre><code>unzip vim-preview-0.9.zip -d /usr/local/share/vim/vimfiles/
+</code></pre>
+
+<p>add bellow line to .vimrc, so you can type &lt;alt+I> to preview in browser:</p>
+
+<pre><code>map &lt;A-i&gt; :Preview&lt;cr&gt;
+</code></pre>
+
+<h2>Taglist Navigation for Markdown</h2>
+
+<p><a href="https://github.com/hupili/evermd/tree/master/doc/howto-markdown-in-vim">howto markdown in vim</a></p>
+
+<p>add to .vimrc</p>
+
+<pre><code>au BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn} set ft=markdown
+let tlist_markdown_settings = 'markdown;c:content;f:figures;t:tables;h:headlines'
+</code></pre>
+
+<p>add to .ctags</p>
+
+<pre><code>--langdef=markdown
+--langmap=markdown:.md
+--regex-markdown=/^#[ \t]+(.*)/\1/h,heading1/
+--regex-markdown=/^##[ \t]+(.*)/.  \1/h,heading2/
+--regex-markdown=/^###[ \t]+(.*)/.    \1/h,heading3/
+--regex-markdown=/^####[ \t]+(.*)/.      \1/h,heading4/
+--regex-markdown=/^#####[ \t]+(.*)/.        \1/h,heading5/
+--regex-markdown=/^######[ \t]+(.*)/.          \1/h,heading6/
+--regex-markdown=/^#######[ \t]+(.*)/.            \1/h,heading7/
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>

@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: iOS | NuoErlz Blog]]></title>
+  <link href="http://nuoerlz.github.com/blog/categories/ios/atom.xml" rel="self"/>
+  <link href="http://nuoerlz.github.com/"/>
+  <updated>2013-01-19T11:30:53+08:00</updated>
+  <id>http://nuoerlz.github.com/</id>
+  <author>
+    <name><![CDATA[nuoerlz]]></name>
+    <email><![CDATA[nuoerlz@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[iOS中在程序中调用打开第三方程序]]></title>
+    <link href="http://nuoerlz.github.com/blog/2013/01/17/start-App-out-of-another-App/"/>
+    <updated>2013-01-17T17:24:00+08:00</updated>
+    <id>http://nuoerlz.github.com/blog/2013/01/17/start-App-out-of-another-App</id>
+    <content type="html"><![CDATA[<h2>在某一程序里调用打开其它程序</h2>
+
+<p>原则上iOS的沙箱原理, 是阻止一个app去访问其他app的资源乃至是系统底层的资源的.
+但是我们可以通过一种变相的方式: 通过对应的URL模式和其他程序进行通讯. 为了实现
+这种程序间的通信, 需要对 被调用程序(A) 作一些修改.</p>
+
+<!--more-->
+
+
+<h3>配置被调用程序(A)</h3>
+
+<p>为了使自己可以被其它程序能够调用打开, 要作的配置:</p>
+
+<h4>注册定制的URL模式</h4>
+
+<p>在为您的应用程序注册URL类型时, 必须指定CFBundleURLTypes属性的子属性:</p>
+
+<ul>
+<li><p>CFBundleURLName 这是个字符串, 表示URL类型的抽象名. 为了确保其唯一性, 建议您
+使用反向DNS风格的标识, 比如 com.yixia.VPlayer</p></li>
+<li><p>CFBundleURLSchemes 这是个URL模式的数组, 表示归属于这个URL类型的URL. 每个模式
+都是一个字符串. 如 VPlayer</p></li>
+</ul>
+
+
+<p>修改 Info.plist ,</p>
+
+<p>```diff</p>
+
+<pre><code>$ git diff VPlayer-Info.plist
+    diff --git a/VPlayer-Info.plist b/VPlayer-Info.plist
+    index faba046..b60a0b9 100644
+    --- a/VPlayer-Info.plist
+    +++ b/VPlayer-Info.plist
+    @@ -2,6 +2,21 @@
+     &lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;
+     &lt;plist version="1.0"&gt;
+     &lt;dict&gt;
+    +    &lt;key&gt;CFBundleGetInfoString&lt;/key&gt;
+    +    &lt;string&gt;&lt;/string&gt;
+    +    &lt;key&gt;CFBundleURLTypes&lt;/key&gt;
+    +    &lt;array&gt;
+    +        &lt;dict&gt;
+    +            &lt;key&gt;CFBundleURLSchemes&lt;/key&gt;
+    +            &lt;array&gt;
+    +                &lt;string&gt;VPlayer&lt;/string&gt;
+    +            &lt;/array&gt;
+    +        &lt;/dict&gt;
+    +        &lt;dict&gt;
+    +            &lt;key&gt;CFBundleURLName&lt;/key&gt;
+    +            &lt;string&gt;com.yixia.VPlayer&lt;/string&gt;
+    +        &lt;/dict&gt;
+    +    &lt;/array&gt;
+            &lt;key&gt;CFBundleDevelopmentRegion&lt;/key&gt;
+            &lt;string&gt;English&lt;/string&gt;
+            &lt;key&gt;CFBundleDisplayName&lt;/key&gt;
+</code></pre>
+
+<p>```</p>
+
+<h3>处理URL请求</h3>
+
+<p>应用程序委托(UIApplicationDelegate)在 application:handleOpenURL: 方法中处理传
+递给应用程序的URL请求</p>
+
+<p>下面代码实现了这个委托方法:
+```objc</p>
+
+<pre><code>- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    if ([[url scheme] isEqualToString:@"VPlayer"]) {
+        // get it!
+        nslog(@"url: %@", url);
+        return YES;
+    }
+    return NO;
+}
+</code></pre>
+
+<p>```</p>
+
+<h3>在其它程序中调用测试</h3>
+
+<p>用 openURL: 方法调用</p>
+
+<p>```objc</p>
+
+<pre><code>- (IBAction)openAnotherApp:(id)sender
+{
+    NSString *video = @"VPlayer://http://v.youku.com/v_show/id_XNDk3ODAzMzEy.html";
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:video]];
+}
+</code></pre>
+
+<p>```</p>
+
+<h3>其它常见的调用系统应用的方法</h3>
+
+<p>```objc</p>
+
+<pre><code>// app store
+NSURL *appStoreUrl = [NSURL URLWithString:@"http://phobos.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=291586600&amp;amp;mt=8"];
+[[UIApplication sharedApplication] openURL:appStoreUrl];
+
+// message
+[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"sms:55555"]];
+
+// phone
+[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tel://8004664411"]];
+
+// mail
+[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"mailto://info@iphonedevelopertips.com"]];
+
+// google map
+NSString *searchQuery = @"the postion I want to know";
+searchQuery = [searchQuery stringByAddingPercentEscapesUsingEncoding: NSUTF8StringEncoding];
+NSString *urlString = [NSString stringWithFormat:@"http://maps.google.com/maps?q=%@", searchQuery];
+[[UIApplication sharedApplication] openURL:[NSURL URLWithString: urlString]];
+
+// browser
+[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://www.google.com/"]];
+</code></pre>
+
+<p>```</p>
+
+<h3>公开你的 Scheme</h3>
+
+<p>有一个网站提供了很多公开了的URL scheme, 你也可以将自己的程序的URL scheme提交上
+去, 公开出来.</p>
+
+<p><a href="http://www.handleopenurl.com/">URL scheme 网站地址</a><br/>
+<a href="http://www.handleopenurl.com/developers">提交你的 url scheme 的地址</a></p>
+
+<h3>Reference</h3>
+
+<p><a href="http://blog.sina.com.cn/s/blog_6ae8b50d0100v4u3.html">IOS在当前程序中调用任意的第三方程序</a><br/>
+<a href="http://blog.csdn.net/sql_help/article/details/7299553">iOS 如何在一个app中调用另一个app</a><br/>
+<a href="http://www.handleopenurl.com/">Shared Interapp Communication!</a><br/>
+<a href="https://developer.apple.com/library/ios/#documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html">Core Foundation Keys</a><br/>
+<a href="http://wiki.akosma.com/IPhone_URL_Schemes">IPhone URL Schemes</a></p>
+
+<h2>使 iOS 应用支持 "Open in ..." 特性</h2>
+
+<p>"Open in ..."<a href="http://ios.biomsoft.com/2012/04/03/register-file-types-to-associate-file-extension-with-an-app/">特性</a>是指把某一文件用另外的应用来查看若处理, 比如, 邮件附件
+, 当你点击它时, 就会出现一个"Open in ..."按钮, 点击, 其就会列出可以处理该类型
+附件的应用, 然后你就可以选择任意一个打开该附件了.</p>
+
+<p>文件类型处理是iphone os 3.2新增的, 与已经存在的自定义URL方案是不同的. 你能注册
+你的应用程序来处理特定的文件类型并且任何应用程序 使用文档控制器能手动处理这些
+文档在你的应用程序中.</p>
+
+<h3>向系统注册</h3>
+
+<p>为了使用"Open in ...", 你需要向系统注册, 告知系统你的应用能够处理的文件类型.
+这通过配置文件 Info.plist 配置实现.</p>
+
+<p>其中, 关键字 CFBundleIconFiles 用来设置你的应用的图标; CFBundleDocumentTypes
+是最重要的节点, 在子节点 LSItemContentTypes 中列出应用所支持的文件类型, 这些文
+件类型的名字用的是UTI(Uniform Type Identifiers)标准, 在<a href="http://developer.apple.com/library/ios/#documentation/Miscellaneous/Reference/UTIRef/Articles/System-DeclaredUniformTypeIdentifiers.html">这里</a>查看系统已定义
+好的名字; 当然你也可定制一个<a href="http://developer.apple.com/library/ios/#documentation/FileManagement/Conceptual/understanding_utis/understand_utis_declare/understand_utis_declare.html">新的文件类型的UTI</a>.</p>
+
+<p>```diff</p>
+
+<pre><code>$ git diff VPlayer-Info.plist
+    diff --git a/VPlayer-Info.plist b/VPlayer-Info.plist
+    index b60a0b9..3afdfb8 100644
+    --- a/VPlayer-Info.plist
+    +++ b/VPlayer-Info.plist
+    @@ -2,6 +2,36 @@
+     &lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;
+     &lt;plist version="1.0"&gt;
+     &lt;dict&gt;
+    +    &lt;key&gt;CFBundleIconFile&lt;/key&gt;
+    +    &lt;string&gt;&lt;/string&gt;
+    +    &lt;key&gt;CFBundleIconFiles&lt;/key&gt;
+    +    &lt;array&gt;
+    +        &lt;string&gt;Icon.png&lt;/string&gt;
+    +        &lt;string&gt;Icon@2x.png&lt;/string&gt;
+    +        &lt;string&gt;Icon-72.png&lt;/string&gt;
+    +        &lt;string&gt;Icon-Small-50.png&lt;/string&gt;
+    +        &lt;string&gt;Icon-Small.png&lt;/string&gt;
+    +        &lt;string&gt;Icon-Small@2x.png&lt;/string&gt;
+    +    &lt;/array&gt;
+    +    &lt;key&gt;CFBundleDocumentTypes&lt;/key&gt;
+    +    &lt;array&gt;
+    +        &lt;dict&gt;
+    +            &lt;key&gt;CFBundleTypeName&lt;/key&gt;
+    +            &lt;string&gt;VPlayer support File&lt;/string&gt;
+    +            &lt;key&gt;CFBundleTypeRole&lt;/key&gt;
+    +            &lt;string&gt;Viewer&lt;/string&gt;
+    +            &lt;key&gt;LSHandlerRank&lt;/key&gt;
+    +            &lt;string&gt;Default&lt;/string&gt;
+    +            &lt;key&gt;LSItemContentTypes&lt;/key&gt;
+    +            &lt;array&gt;
+    +                &lt;string&gt;public.audiovisual-content&lt;/string&gt;
+    +                &lt;string&gt;public.url&lt;/string&gt;
+    +                &lt;string&gt;public.file-url&lt;/string&gt;
+    +                &lt;string&gt;public.url-name&lt;/string&gt;
+    +                &lt;string&gt;public.image&lt;/string&gt;
+    +            &lt;/array&gt;
+    +        &lt;/dict&gt;
+    +    &lt;/array&gt;
+         &lt;key&gt;CFBundleGetInfoString&lt;/key&gt;
+         &lt;string&gt;&lt;/string&gt;
+</code></pre>
+
+<p>```</p>
+
+<p>在这里, 我把我的应用配置成可以处理音视频, 图象, URL.</p>
+
+<h3>处理URL请求</h3>
+
+<p>当应用被"Open in ..."调用打开时, 会收到系统发送的URL, 该URL指向要被处理的文件
+或文件的复本, 所以在程序里, 也必须作相应的处理. 很幸运, 这
+与<strong><em>在某一程序里调用打开其它程序--处理URL请求</em></strong>是一样的. 参见文章的前面部分.
+因为两者是一样处理流程, 所以有一点要注意, 可以用下面的方法把两者区分开:</p>
+
+<p>```objc</p>
+
+<pre><code>- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    if([url isFileURL]) {
+        // Handle file being passed in ("Open in ...")
+    } else {
+        // Handle custom URL scheme
+    }
+}
+</code></pre>
+
+<p>```</p>
+
+<h3>Reference</h3>
+
+<p><a href="https://developer.apple.com/library/ios/#documentation/FileManagement/Conceptual/DocumentInteraction_TopicsForIOS/Articles/RegisteringtheFileTypesYourAppSupports.html">Registering the File Types Your App Supports</a><br/>
+<a href="http://developer.apple.com/library/ios/#documentation/FileManagement/Conceptual/DocumentInteraction_TopicsForIOS/Articles/PreviewingandOpeningItems.html">Previewing and Opening Files</a><br/>
+<a href="http://developer.apple.com/library/ios/#documentation/FileManagement/Conceptual/understanding_utis/understand_utis_declare/understand_utis_declare.html">Declaring New Uniform Type Identifiers</a><br/>
+<a href="http://developer.apple.com/library/ios/#documentation/FileManagement/Conceptual/understanding_utis/understand_utis.tasks/understand_utis_tasks.html">Adopting Uniform Type Identifiers</a><br/>
+<a href="http://developer.apple.com/library/ios/#documentation/Miscellaneous/Reference/UTIRef/Articles/System-DeclaredUniformTypeIdentifiers.html">System-Declared Uniform Type Identifiers</a><br/>
+<a href="http://ios.biomsoft.com/2012/04/03/register-file-types-to-associate-file-extension-with-an-app/">Register File Types to Associate File Extension with an App</a><br/>
+<a href="http://ipadinsight.com/ios/is-the-open-in-feature-in-ios-limited-to-10-apps/">Is the 'Open In' Feature in iOS Limited to 10 Apps?</a><br/>
+<a href="http://blog.csdn.net/zaitianaoxiang/article/details/6658492">UTI iPhone支持依文件后缀名打开应用</a></p>
+
+<p>a</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[iOS Jailbreak & Install Cracked Apps]]></title>
+    <link href="http://nuoerlz.github.com/blog/2013/01/15/jailbroken-relate/"/>
+    <updated>2013-01-15T17:24:00+08:00</updated>
+    <id>http://nuoerlz.github.com/blog/2013/01/15/jailbroken-relate</id>
+    <content type="html"><![CDATA[<h2>jailbroken</h2>
+
+<p><a href="http://apptrackr.cd/">apptrackr</a></p>
+
+<h2>How to Get Installous From Cydia</h2>
+
+<p><a href="http://appostasy.com/apps/?p=545">how to</a></p>
+
+<p>Note: For this to work, you must have your iPhone/iPod/iPad jailbroken.
+For a program to help you jailbreak your device, check out our BlackSnow
+review.</p>
+
+<!--more-->
+
+
+<ol>
+<li>Turn on your Apple iPhone and open up Cydia.</li>
+<li>Open the 'Manage' tab and select 'Sources.'</li>
+<li>On the top of your unlocked iPhone screen, select 'Edit' and then 'Add'</li>
+<li>You will be prompted to enter in a URL. Type in the following URL:
+http://cydia.hackulo.us</li>
+<li>Wait a few minutes as the program begins to download. Once it says
+'Complete,' hit 'Return to Cydia.'</li>
+<li>Now, back on the Cydia screen, select Hackulo.us from the top menu, under
+'Entered by User.'</li>
+<li>Scroll down and select 'Installous.'</li>
+<li>Press 'Install' at the top of your screen.</li>
+<li>Congratulations! You've just successfully installed Installous on your
+unlocked iPhone!</li>
+</ol>
+
+
+<p>see also:
+<a href="http://jaxov.com/2012/03/install-cracked-apps-on-ios-5-1-using-installous/">How to Install Installous on iOS 5.1 to Get Cracked iPhone Apps?</a></p>
+
+<h2>Install Cracked Apps</h2>
+
+<h3>How To Install Cracked Apps WITHOUT Installous!</h3>
+
+<ol>
+<li>Go to http://www.appzone.eu and download an app.</li>
+<li>When downloaded, copy the app.</li>
+<li>In Finder, search for the map called; 'Add Automatically To iTunes'</li>
+<li>Paste the app in that map, and open iTunes.</li>
+<li>Sync your iDevice with iTunes and you're done!</li>
+</ol>
+
+
+<p><a href="http://www.youtube.com/watch?v=V-jGNjA5KjE">video tech</a></p>
+
+<h3>How to install Cracked Apps on iPhone &amp; iPod Touch &amp; iPad WITHOUT WiFi or itunes</h3>
+
+<p>As all cracked App Store apps have ".IPA" extension, so you must install first
+'Installous' which can then be used to install the cracked IPA files. All you
+need is a jailbroken iDevice. Since these are the jailbreaking tools that will
+create a Root Folder on your iDevice.</p>
+
+<ul>
+<li>Download 'iPhone Explorer' for Mac and PC from:
+http://www.macroplant.com/iphoneexplorer/. You can also use'DiskAid' for Mac
+and PC from : http://www.digidna.net/products/diskaid/download</li>
+<li>Connect your iDevice to your Computer via USB and launch iPhone Explorer.
+Follow and Navigate exactly as shown in the video.</li>
+<li>Now you need to download a Cracked App. Download it from
+http://apptrackr.org/ You can also search on Google or http://4shared.com or
+anywhere you like.  Its your choice. But it MUST be in ".ipa" extension.
+Because this ".ipa" is the only extension that is recognized by our Apple
+Devices.</li>
+<li>Once you have the IPA file, launch DiskAid or iPhone Explorer. Go to
+<strong>/var/mobile/Documents/Installous/Downloads</strong> and place IPA file in
+'Downloads' directory exactly as shown in the video. Do not place it anywhere
+else.</li>
+<li>Open Installous on your iPhone or iPod Touch or iPad and go to its Download
+section. You will find your cracked app. Tap on it and hit Install. Done.
+Your Cracked app will now be installed successfully.</li>
+</ul>
+
+
+<p><a href="http://www.youtube.com/watch?v=ZBdWqf8a1xA&amp;feature=related">video tech</a></p>
+]]></content>
+  </entry>
+  
+</feed>
