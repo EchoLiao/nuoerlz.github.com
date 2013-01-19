@@ -4,7 +4,7 @@
   <title><![CDATA[NuoErlz Blog]]></title>
   <link href="http://nuoerlz.github.com/atom.xml" rel="self"/>
   <link href="http://nuoerlz.github.com/"/>
-  <updated>2013-01-19T18:09:02+08:00</updated>
+  <updated>2013-01-19T18:11:02+08:00</updated>
   <id>http://nuoerlz.github.com/</id>
   <author>
     <name><![CDATA[nuoerlz]]></name>
@@ -353,6 +353,8 @@
 <a href="http://ios.biomsoft.com/2012/04/03/register-file-types-to-associate-file-extension-with-an-app/">Register File Types to Associate File Extension with an App</a><br/>
 <a href="http://ipadinsight.com/ios/is-the-open-in-feature-in-ios-limited-to-10-apps/">Is the &#8216;Open In&#8217; Feature in iOS Limited to 10 Apps?</a><br/>
 <a href="http://blog.csdn.net/zaitianaoxiang/article/details/6658492">UTI iPhone支持依文件后缀名打开应用</a></p>
+
+<p>XXXX</p>
 ]]></content>
   </entry>
   
@@ -659,7 +661,7 @@ Or, if you prefer, <strong>use two underscores instead</strong>.</p>
 <p>邮址的自动链接也很类似, 只是 Markdown 会先做一个编码转换的过程, 把文字字符转成
 16 进位码的 HTML 实体, 这样的格式可以糊弄一些不好的邮址收集机器人, 例如:</p>
 
-<p><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#97;&#x64;&#100;&#x72;&#x65;&#115;&#115;&#64;&#x65;&#x78;&#97;&#109;&#112;&#108;&#101;&#x2e;&#x63;&#x6f;&#x6d;">&#97;&#x64;&#x64;&#114;&#101;&#x73;&#x73;&#64;&#x65;&#x78;&#x61;&#109;&#x70;&#108;&#101;&#x2e;&#x63;&#x6f;&#x6d;</a></p>
+<p><a href="&#109;&#97;&#x69;&#x6c;&#116;&#111;&#58;&#97;&#100;&#100;&#x72;&#101;&#x73;&#x73;&#x40;&#x65;&#120;&#97;&#x6d;&#x70;&#108;&#x65;&#46;&#99;&#x6f;&#109;">&#x61;&#100;&#100;&#x72;&#x65;&#115;&#x73;&#64;&#x65;&#x78;&#x61;&#109;&#x70;&#x6c;&#101;&#46;&#x63;&#111;&#x6d;</a></p>
 
 <h1>图片</h1>
 

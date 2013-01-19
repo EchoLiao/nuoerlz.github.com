@@ -4,7 +4,7 @@
   <title><![CDATA[Category: iOS | NuoErlz Blog]]></title>
   <link href="http://nuoerlz.github.com/blog/categories/ios/atom.xml" rel="self"/>
   <link href="http://nuoerlz.github.com/"/>
-  <updated>2013-01-19T18:09:02+08:00</updated>
+  <updated>2013-01-19T18:11:02+08:00</updated>
   <id>http://nuoerlz.github.com/</id>
   <author>
     <name><![CDATA[nuoerlz]]></name>
@@ -259,6 +259,8 @@ NSString *urlString = [NSString stringWithFormat:@"http://maps.google.com/maps?q
 <a href="http://ios.biomsoft.com/2012/04/03/register-file-types-to-associate-file-extension-with-an-app/">Register File Types to Associate File Extension with an App</a><br/>
 <a href="http://ipadinsight.com/ios/is-the-open-in-feature-in-ios-limited-to-10-apps/">Is the 'Open In' Feature in iOS Limited to 10 Apps?</a><br/>
 <a href="http://blog.csdn.net/zaitianaoxiang/article/details/6658492">UTI iPhone支持依文件后缀名打开应用</a></p>
+
+<p>XXXX</p>
 ]]></content>
   </entry>
   
