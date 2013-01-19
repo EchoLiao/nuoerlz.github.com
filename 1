@@ -1,5 +1,29 @@
-rake aborted!
-no such file to load -- bundler/setup
-/Volumes/Macintosh-HD-2/RT/home/scr/.vercol/git/lang/blog/github/nuoerlz.github.com/Rakefile:2
-(See full trace by running task with --trace)
+rm -rf _deploy/assets
+rm -rf _deploy/atom.xml
+rm -rf _deploy/blog
+rm -rf _deploy/favicon.png
+rm -rf _deploy/font
+rm -rf _deploy/images
+rm -rf _deploy/index.html
+rm -rf _deploy/javascripts
+rm -rf _deploy/sitemap.xml
+rm -rf _deploy/stylesheets
+cp -r public/. _deploy
+cd _deploy
 (in /Volumes/Macintosh-HD-2/RT/home/scr/.vercol/git/lang/blog/github/nuoerlz.github.com)
+## Deploying branch to Github Pages 
+
+## copying public to _deploy
+
+## Commiting: Site updated at Sat Jan 19 07:18:00 UTC 2013
+[master da46a04] Site updated at Sat Jan 19 07:18:00 UTC 2013
+ 11 files changed, 18 insertions(+), 18 deletions(-)
+
+## Pushing generated _deploy website
+cd -
+rake aborted!
+Don't know how to build task '2'
+
+(See full trace by running task with --trace)
+
+## Github Pages deploy complete
