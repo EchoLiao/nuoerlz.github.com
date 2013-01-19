@@ -4,7 +4,7 @@
   <title><![CDATA[Category: iOS | NuoErlz Blog]]></title>
   <link href="http://nuoerlz.github.com/blog/categories/ios/atom.xml" rel="self"/>
   <link href="http://nuoerlz.github.com/"/>
-  <updated>2013-01-19T13:00:58+08:00</updated>
+  <updated>2013-01-19T13:08:08+08:00</updated>
   <id>http://nuoerlz.github.com/</id>
   <author>
     <name><![CDATA[nuoerlz]]></name>
@@ -352,7 +352,7 @@ Your Cracked app will now be installed successfully.</li>
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[发布 iOS App 到越狱市场]]></title>
+    <title type="html"><![CDATA[iOS应用的越狱版本(deb)的制作,发布,安装,卸载过程]]></title>
     <link href="http://nuoerlz.github.com/blog/2012/09/07/prepare-upload-app-to-cydia/"/>
     <updated>2012-09-07T17:24:00+08:00</updated>
     <id>http://nuoerlz.github.com/blog/2012/09/07/prepare-upload-app-to-cydia</id>
@@ -467,17 +467,13 @@ $ ls Payload/
 <p>标准的 deb 脚本有4个, preinst, postinst, prerm 和 postrm ; 在 Cydia 中还存在一
 个独立的脚本, extrainst_ , 从字面上来讲就是额外的安装脚本.</p>
 
-<ul>
-<li>preinst       在复制文件前执行的脚本</li>
-<li>postinst      在复制文件之后执行的脚本</li>
-<li>prerm         在卸载前执行的脚本</li>
-<li>postrm        在卸载之后执行的脚本</li>
-<li>extrainst_    这个脚本是为解决某些脚本只需要在安装时执行, 在升级时不执行
-
-<pre><code>          而专门引入的一个脚本, 功能跟postinst差不多
-</code></pre></li>
-</ul>
-
+<pre><code>* preinst       在复制文件前执行的脚本
+* postinst      在复制文件之后执行的脚本
+* prerm         在卸载前执行的脚本
+* postrm        在卸载之后执行的脚本
+* extrainst_    这个脚本是为解决某些脚本只需要在安装时执行, 在升级时不执行
+                而专门引入的一个脚本, 功能跟postinst差不多
+</code></pre>
 
 <h3>生成 deb 包</h3>
 

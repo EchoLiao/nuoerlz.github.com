@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: cydia | NuoErlz Blog]]></title>
-  <link href="http://nuoerlz.github.com/blog/categories/cydia/atom.xml" rel="self"/>
+  <title><![CDATA[Category: deb | NuoErlz Blog]]></title>
+  <link href="http://nuoerlz.github.com/blog/categories/deb/atom.xml" rel="self"/>
   <link href="http://nuoerlz.github.com/"/>
   <updated>2013-01-19T13:08:08+08:00</updated>
   <id>http://nuoerlz.github.com/</id>

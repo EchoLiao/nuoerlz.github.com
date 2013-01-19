@@ -3,7 +3,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>发布 iOS App 到越狱市场 - NuoErlz Blog</title>
+	<title>iOS应用的越狱版本(deb)的制作,发布,安装,卸载过程 - NuoErlz Blog</title>
 	<meta name="author" content="nuoerlz">
 
 	
@@ -76,7 +76,7 @@
 		
 	
 	<div id="content" class="inner"><article class="post">
-	<h2 class="title">发布 iOS App 到越狱市场</h2>
+	<h2 class="title">iOS应用的越狱版本(deb)的制作,发布,安装,卸载过程</h2>
 	<div class="entry-content"><h2>检查 dpkg-deb 工具集是否可用</h2>
 
 <pre><code>$ dpkg-deb --version
@@ -188,17 +188,13 @@ $ ls Payload/
 <p>标准的 deb 脚本有4个, preinst, postinst, prerm 和 postrm ; 在 Cydia 中还存在一
 个独立的脚本, extrainst_ , 从字面上来讲就是额外的安装脚本.</p>
 
-<ul>
-<li>preinst       在复制文件前执行的脚本</li>
-<li>postinst      在复制文件之后执行的脚本</li>
-<li>prerm         在卸载前执行的脚本</li>
-<li>postrm        在卸载之后执行的脚本</li>
-<li>extrainst_    这个脚本是为解决某些脚本只需要在安装时执行, 在升级时不执行
-
-<pre><code>          而专门引入的一个脚本, 功能跟postinst差不多
-</code></pre></li>
-</ul>
-
+<pre><code>* preinst       在复制文件前执行的脚本
+* postinst      在复制文件之后执行的脚本
+* prerm         在卸载前执行的脚本
+* postrm        在卸载之后执行的脚本
+* extrainst_    这个脚本是为解决某些脚本只需要在安装时执行, 在升级时不执行
+                而专门引入的一个脚本, 功能跟postinst差不多
+</code></pre>
 
 <h3>生成 deb 包</h3>
 
@@ -342,7 +338,7 @@ postrm 脚本中删除.</p>
 	<div class="tags">
 
 
-	<a class='category' href='/blog/categories/cydia/'>cydia</a>, <a class='category' href='/blog/categories/ios/'>iOS</a>, <a class='category' href='/blog/categories/jailbreak/'>jailbreak</a>
+	<a class='category' href='/blog/categories/cydia/'>cydia</a>, <a class='category' href='/blog/categories/deb/'>deb</a>, <a class='category' href='/blog/categories/ios/'>iOS</a>, <a class='category' href='/blog/categories/jailbreak/'>jailbreak</a>
 
 
 </div>
