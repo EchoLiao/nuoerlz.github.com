@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "发布 iOS App 到越狱市场"
+title: "iOS应用的越狱版本(deb)的制作,发布,安装,卸载过程"
 date: 2012-09-07 17:24
 comments: true
-categories: iOS jailbreak cydia
+categories: iOS deb jailbreak cydia
 ---
 
 
@@ -106,12 +106,12 @@ Fink 的主页是 http://www.finkproject.org .
 标准的 deb 脚本有4个, preinst, postinst, prerm 和 postrm ; 在 Cydia 中还存在一
 个独立的脚本, extrainst_ , 从字面上来讲就是额外的安装脚本.
 
-* preinst		在复制文件前执行的脚本
-* postinst		在复制文件之后执行的脚本
-* prerm			在卸载前执行的脚本
-* postrm		在卸载之后执行的脚本
-* extrainst_	这个脚本是为解决某些脚本只需要在安装时执行, 在升级时不执行
-				而专门引入的一个脚本, 功能跟postinst差不多
+	* preinst		在复制文件前执行的脚本
+	* postinst		在复制文件之后执行的脚本
+	* prerm			在卸载前执行的脚本
+	* postrm		在卸载之后执行的脚本
+	* extrainst_	这个脚本是为解决某些脚本只需要在安装时执行, 在升级时不执行
+					而专门引入的一个脚本, 功能跟postinst差不多
 
 
 ### 生成 deb 包
