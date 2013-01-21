@@ -7,7 +7,7 @@ categories: Octopress Markdown
 ---
 
 # 安装与设置
-*****
+
 
 ## 安装和设置Git
 
@@ -49,7 +49,6 @@ categories: Octopress Markdown
 
 
 # 写博与发博步骤
-*****
 
 ## 开始写博文
 
@@ -110,7 +109,6 @@ categories: Octopress Markdown
 
 
 # 其它功能组件
-*****
 
 ## Disqus(评论)
 
@@ -173,14 +171,32 @@ categories: Octopress Markdown
     default_asides: [asides/category_list.html,asides/recent_posts.html, asides/github.html, asides/twitter.html, asides/delicious.html, asides/pinboard.html, asides/googleplus.html]
 ```
 
+
+## 主题
+
+Octopress 可以安装不同的主题, 且安装过程很简单, 很值得一试. 首先先看一下都有什
+么主题, 在[这里][tt1]可以查看.
+
+主题的安装方法是:
+
+* 找到这个主题的 github 地址, 比如 git://github.com/tommy351/Octopress-Theme-Slash.git
+* 然后 clone 到你本地博客根目录的 .themes 目录中:
+	git clone git://github.com/tommy351/Octopress-Theme-Slash.git .themes/slash
+* 安装
+	rake install['slash']
+* 预览
+	rake preview
+* 部署上传
+	rake deploy
+
+[tt1]: https://github.com/imathis/octopress/wiki/3rd-Party-Octopress-Themes
+
+
 # Reference
-*****
 
-[搭Blog 学Git][r1]
-
-[如何维护Github上博客][r2]
-
-[为octopress添加分类(category)列表][r3]
+[搭Blog 学Git][r1]  
+[如何维护Github上博客][r2]  
+[为octopress添加分类(category)列表][r3]  
 
 [r1]: http://shanewfx.github.com/blog/2012/02/16/bulid-blog-by-octopress/
 [r2]: http://shanewfx.github.com/blog/2012/02/16/clone-blog-from-github/

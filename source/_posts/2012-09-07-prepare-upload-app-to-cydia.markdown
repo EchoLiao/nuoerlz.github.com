@@ -24,7 +24,7 @@ categories: iOS deb jailbreak cydia
 制作deb文件需要有dpkg-deb命令, Ubuntu/Debian 系统自带此命令, 越狱过的 iPhone
 OS 也有此命令, Mac OS X 下需安装Fink, Windows 下需安装 Cygwin.
 
-Fink 的主页是 http://www.finkproject.org .
+Fink 的主页是 [http://www.finkproject.org](http://www.finkproject.org) .
 
 以下是在 Mac OS X 下的安装过程. 可以参考官网上的[Quick Start][if1].
 
