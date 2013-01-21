@@ -79,8 +79,6 @@
 	<h2 class="title">Write Blog in Github With Markdown</h2>
 	<div class="entry-content"><h1>安装与设置</h1>
 
-<hr />
-
 <h2>安装和设置Git</h2>
 
 <h2>安装Ruby环境</h2>
@@ -127,8 +125,6 @@ disqus_show_comment_count: false
 </code></pre>
 
 <h1>写博与发博步骤</h1>
-
-<hr />
 
 <h2>开始写博文</h2>
 
@@ -197,8 +193,6 @@ git push origin source
 
 
 <h1>其它功能组件</h1>
-
-<hr />
 
 <h2>Disqus(评论)</h2>
 
@@ -288,15 +282,31 @@ disqus_show_comment_count: true
 </span></code></pre></td></tr></table></div></figure>
 
 
+<h2>主题</h2>
+
+<p>Octopress 可以安装不同的主题, 且安装过程很简单, 很值得一试. 首先先看一下都有什
+么主题, 在<a href="https://github.com/imathis/octopress/wiki/3rd-Party-Octopress-Themes">这里</a>可以查看.</p>
+
+<p>主题的安装方法是:</p>
+
+<ul>
+<li>找到这个主题的 github 地址, 比如 git://github.com/tommy351/Octopress-Theme-Slash.git</li>
+<li>然后 clone 到你本地博客根目录的 .themes 目录中:
+  git clone git://github.com/tommy351/Octopress-Theme-Slash.git .themes/slash</li>
+<li>安装
+  rake install[&#8216;slash&#8217;]</li>
+<li>预览
+  rake preview</li>
+<li>部署上传
+  rake deploy</li>
+</ul>
+
+
 <h1>Reference</h1>
 
-<hr />
-
-<p><a href="http://shanewfx.github.com/blog/2012/02/16/bulid-blog-by-octopress/">搭Blog 学Git</a></p>
-
-<p><a href="http://shanewfx.github.com/blog/2012/02/16/clone-blog-from-github/">如何维护Github上博客</a></p>
-
-<p><a href="http://codemacro.com/2012/07/18/add-category-list-to-octopress/">为octopress添加分类(category)列表</a></p>
+<p><a href="http://shanewfx.github.com/blog/2012/02/16/bulid-blog-by-octopress/">搭Blog 学Git</a><br/>
+<a href="http://shanewfx.github.com/blog/2012/02/16/clone-blog-from-github/">如何维护Github上博客</a><br/>
+<a href="http://codemacro.com/2012/07/18/add-category-list-to-octopress/">为octopress添加分类(category)列表</a></p>
 </div>
 
 

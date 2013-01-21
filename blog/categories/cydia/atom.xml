@@ -4,7 +4,7 @@
   <title><![CDATA[Category: cydia | NuoErlz Blog]]></title>
   <link href="http://nuoerlz.github.com/blog/categories/cydia/atom.xml" rel="self"/>
   <link href="http://nuoerlz.github.com/"/>
-  <updated>2013-01-19T18:14:01+08:00</updated>
+  <updated>2013-01-21T12:39:05+08:00</updated>
   <id>http://nuoerlz.github.com/</id>
   <author>
     <name><![CDATA[nuoerlz]]></name>
@@ -37,7 +37,7 @@
 <p>制作deb文件需要有dpkg-deb命令, Ubuntu/Debian 系统自带此命令, 越狱过的 iPhone
 OS 也有此命令, Mac OS X 下需安装Fink, Windows 下需安装 Cygwin.</p>
 
-<p>Fink 的主页是 http://www.finkproject.org .</p>
+<p>Fink 的主页是 <a href="http://www.finkproject.org">http://www.finkproject.org</a> .</p>
 
 <p>以下是在 Mac OS X 下的安装过程. 可以参考官网上的<a href="http://www.finkproject.org/download/">Quick Start</a>.</p>
 

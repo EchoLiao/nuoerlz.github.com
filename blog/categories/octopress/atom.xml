@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | NuoErlz Blog]]></title>
   <link href="http://nuoerlz.github.com/blog/categories/octopress/atom.xml" rel="self"/>
   <link href="http://nuoerlz.github.com/"/>
-  <updated>2013-01-19T18:14:01+08:00</updated>
+  <updated>2013-01-21T12:39:05+08:00</updated>
   <id>http://nuoerlz.github.com/</id>
   <author>
     <name><![CDATA[nuoerlz]]></name>
@@ -147,7 +147,7 @@ Or, if you prefer, <strong>use two underscores instead</strong>.</p>
 <p>邮址的自动链接也很类似, 只是 Markdown 会先做一个编码转换的过程, 把文字字符转成
 16 进位码的 HTML 实体, 这样的格式可以糊弄一些不好的邮址收集机器人, 例如:</p>
 
-<p><a href="&#x6d;&#x61;&#105;&#108;&#116;&#111;&#58;&#97;&#100;&#100;&#x72;&#x65;&#115;&#x73;&#x40;&#x65;&#120;&#x61;&#109;&#112;&#x6c;&#x65;&#46;&#99;&#111;&#x6d;">&#97;&#x64;&#x64;&#114;&#101;&#115;&#x73;&#x40;&#101;&#120;&#x61;&#109;&#112;&#108;&#101;&#x2e;&#x63;&#111;&#x6d;</a></p>
+<p><a href="&#109;&#x61;&#105;&#108;&#116;&#x6f;&#58;&#97;&#100;&#x64;&#114;&#x65;&#115;&#115;&#x40;&#101;&#x78;&#97;&#x6d;&#112;&#x6c;&#101;&#46;&#x63;&#x6f;&#109;">&#x61;&#100;&#100;&#114;&#x65;&#115;&#x73;&#x40;&#x65;&#x78;&#x61;&#x6d;&#x70;&#x6c;&#x65;&#x2e;&#x63;&#x6f;&#109;</a></p>
 
 <h1>图片</h1>
 
@@ -262,8 +262,6 @@ _   底线
     <id>http://nuoerlz.github.com/blog/2012/12/13/write-blog-in-github-with-markdown</id>
     <content type="html"><![CDATA[<h1>安装与设置</h1>
 
-<hr />
-
 <h2>安装和设置Git</h2>
 
 <h2>安装Ruby环境</h2>
@@ -310,8 +308,6 @@ disqus_show_comment_count: false
 </code></pre>
 
 <h1>写博与发博步骤</h1>
-
-<hr />
 
 <h2>开始写博文</h2>
 
@@ -378,8 +374,6 @@ rake deploy
 <p>```</p>
 
 <h1>其它功能组件</h1>
-
-<hr />
 
 <h2>Disqus(评论)</h2>
 
@@ -451,15 +445,31 @@ Liquid::Template.register_tag('category_list', Jekyll::CategoryListTag)
 
 <p>```</p>
 
+<h2>主题</h2>
+
+<p>Octopress 可以安装不同的主题, 且安装过程很简单, 很值得一试. 首先先看一下都有什
+么主题, 在<a href="https://github.com/imathis/octopress/wiki/3rd-Party-Octopress-Themes">这里</a>可以查看.</p>
+
+<p>主题的安装方法是:</p>
+
+<ul>
+<li>找到这个主题的 github 地址, 比如 git://github.com/tommy351/Octopress-Theme-Slash.git</li>
+<li>然后 clone 到你本地博客根目录的 .themes 目录中:
+  git clone git://github.com/tommy351/Octopress-Theme-Slash.git .themes/slash</li>
+<li>安装
+  rake install['slash']</li>
+<li>预览
+  rake preview</li>
+<li>部署上传
+  rake deploy</li>
+</ul>
+
+
 <h1>Reference</h1>
 
-<hr />
-
-<p><a href="http://shanewfx.github.com/blog/2012/02/16/bulid-blog-by-octopress/">搭Blog 学Git</a></p>
-
-<p><a href="http://shanewfx.github.com/blog/2012/02/16/clone-blog-from-github/">如何维护Github上博客</a></p>
-
-<p><a href="http://codemacro.com/2012/07/18/add-category-list-to-octopress/">为octopress添加分类(category)列表</a></p>
+<p><a href="http://shanewfx.github.com/blog/2012/02/16/bulid-blog-by-octopress/">搭Blog 学Git</a><br/>
+<a href="http://shanewfx.github.com/blog/2012/02/16/clone-blog-from-github/">如何维护Github上博客</a><br/>
+<a href="http://codemacro.com/2012/07/18/add-category-list-to-octopress/">为octopress添加分类(category)列表</a></p>
 ]]></content>
   </entry>
   
