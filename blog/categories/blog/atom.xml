@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: blog | NuoErlz Blog]]></title>
+  <link href="http://nuoerlz.github.com/blog/categories/blog/atom.xml" rel="self"/>
+  <link href="http://nuoerlz.github.com/"/>
+  <updated>2013-04-22T09:50:08+08:00</updated>
+  <id>http://nuoerlz.github.com/</id>
+  <author>
+    <name><![CDATA[nuoerlz]]></name>
+    <email><![CDATA[nuoerlz@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Post blog with octopress & github page]]></title>
+    <link href="http://nuoerlz.github.com/blog/2013/04/07/post_blog_step/"/>
+    <updated>2013-04-07T17:24:00+08:00</updated>
+    <id>http://nuoerlz.github.com/blog/2013/04/07/post_blog_step</id>
+    <content type="html"><![CDATA[<h2>Use rake*</h2>
+
+<pre><code>cd ..../nuoerlz.github.com
+rake new_post["title"]
+vim source/_post/2012-02-16-title.markdown
+rake generate
+rake preview
+rake deploy
+</code></pre>
+
+<!--more-->
+
+
+<h2>Use gb_*</h2>
+
+<pre><code>// write
+gb_add_blog_to_lib.sh post_file.md
+
+// auto crontab
+gb_auto_push_github_blog.sh
+
+// list original file
+gb_list_blog_original_source_and_dir.sh
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>

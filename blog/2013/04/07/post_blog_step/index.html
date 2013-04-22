@@ -3,11 +3,16 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Category: Octopress - NuoErlz Blog</title>
+	<title>Post blog with octopress & github page - NuoErlz Blog</title>
 	<meta name="author" content="nuoerlz">
 
 	
-	<meta name="description" content="Category: Octopress">
+	<meta name="description" content="Use rake* cd ..../nuoerlz.github.com
+rake new_post["title"]
+vim source/_post/2012-02-16-title.markdown
+rake generate
+rake preview
+rake deploy Use gb_ &hellip;">
 	
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -75,77 +80,80 @@
 	
 		
 	
-	<div id="content" class="inner">
-	
+	<div id="content" class="inner"><article class="post">
+	<h2 class="title">Post Blog With Octopress & Github Page</h2>
+	<div class="entry-content"><h2>Use rake*</h2>
+
+<pre><code>cd ..../nuoerlz.github.com
+rake new_post["title"]
+vim source/_post/2012-02-16-title.markdown
+rake generate
+rake preview
+rake deploy
+</code></pre>
+
+<!--more-->
 
 
-	
-	
-	<section class="archives"><h1 class="year">2013</h1>
+<h2>Use gb_*</h2>
 
-<article>
-	<h2 class="title"><a href="/blog/2013/04/07/post_blog_step/">Post blog with octopress & github page</a></h2>
-	<div class="meta">
-		<span class="date">Apr  7</span>
-		<span class="tags">
+<pre><code>// write
+gb_add_blog_to_lib.sh post_file.md
+
+// auto crontab
+gb_auto_push_github_blog.sh
+
+// list original file
+gb_list_blog_original_source_and_dir.sh
+</code></pre>
+</div>
+
+
+<div class="meta">
+	<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-04-07T17:24:00+08:00" pubdate data-updated="true">Apr 7<span>th</span>, 2013</time></div>
+	<div class="tags">
 
 
 	<a class='category' href='/blog/categories/octopress/'>Octopress</a>, <a class='category' href='/blog/categories/blog/'>blog</a>
 
 
-</span>
-	    
-	    <span class="comments"><a href="/blog/2013/04/07/post_blog_step/#disqus_thread">Comments</a></span>
-	    
+</div>
+	
+		<span class="comments"><a href="/blog/2013/04/07/post_blog_step/#disqus_thread">Comments</a></span>
+	
+</div></article>
+
+	<div class="share">
+	<div class="addthis_toolbox addthis_default_style ">
+	
+	
+	<a class="addthis_button_tweet"></a>
+	
+	
+	<a class="addthis_counter addthis_pill_style"></a>
 	</div>
-</article>
-
-	
-
-
-	
-	
-		</section>
-	
-	<section class="archives"><h1 class="year">2012</h1>
-
-<article>
-	<h2 class="title"><a href="/blog/2012/12/13/markdown-basic/">Markdown-Basic</a></h2>
-	<div class="meta">
-		<span class="date">Dec 13</span>
-		<span class="tags">
+  <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid="></script>
+</div>
 
 
-	<a class='category' href='/blog/categories/markdown/'>Markdown</a>, <a class='category' href='/blog/categories/octopress/'>Octopress</a>
 
-
-</span>
-	    
-	    <span class="comments"><a href="/blog/2012/12/13/markdown-basic/#disqus_thread">Comments</a></span>
-	    
-	</div>
-</article>
-
-	
-
-
-<article>
-	<h2 class="title"><a href="/blog/2012/12/13/write-blog-in-github-with-markdown/">write blog in github with markdown</a></h2>
-	<div class="meta">
-		<span class="date">Dec 13</span>
-		<span class="tags">
-
-
-	<a class='category' href='/blog/categories/markdown/'>Markdown</a>, <a class='category' href='/blog/categories/octopress/'>Octopress</a>
-
-
-</span>
-	    
-	    <span class="comments"><a href="/blog/2012/12/13/write-blog-in-github-with-markdown/#disqus_thread">Comments</a></span>
-	    
-	</div>
-</article>
-
+<section id="comment">
+    <h2 class="title">Comments</h2>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
 </div>
 	<footer id="footer" class="inner">Copyright &copy; 2013
 
@@ -165,7 +173,10 @@
       var disqus_shortname = 'nuoerlz';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://nuoerlz.github.com/blog/2013/04/07/post_blog_step/';
+        var disqus_url = 'http://nuoerlz.github.com/blog/2013/04/07/post_blog_step/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
